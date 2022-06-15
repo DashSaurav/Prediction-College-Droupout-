@@ -1,3 +1,4 @@
+# importing libraries.
 import pickle
 import streamlit as st
 from PIL import Image
@@ -5,11 +6,13 @@ import pandas as pd
 import numpy as np
 header= st.sidebar.container()
 
+# calling images at center.
 with header:
     padding = 0
     img = Image.open("MicrosoftTeams-image.png")
     st.image(img, width=300)
 
+# having a function for taking inputs from user in array format. 
 def user_input_features():
     c = st.columns(3)
     with c[0]:
@@ -56,6 +59,7 @@ churn_raw.fillna(0, inplace=True)
 churn = churn_raw.drop(columns=['Dropout'])
 df = pd.concat([input_df,churn],axis=0)
 
+# doing on-hot encoding for categorical columns
 encode = ['Residence_city','Civil_status','State','Province','Desired_program','Father_level','Mother_level']
 for col in encode:
     dummy = pd.get_dummies(df[col], prefix=col)
