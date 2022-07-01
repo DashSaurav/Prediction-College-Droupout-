@@ -87,11 +87,12 @@ df = df[features]
 # st.subheader('User Input features')
 # st.write(df)
 st.subheader("Prediction.")
-load_clf = pickle.load(open('dropout_used_all.pkl', 'rb'))
+load_clf = pickle.load(open('dropout_file.pkl', 'rb'))
 
 prediction = load_clf.predict(df)
 if prediction == 0:
     prediction = "Not Dropout"
+    st.success(prediction)
 else:
     prediction = "He will Dropout"
-st.info(prediction)
+    st.error(prediction)
